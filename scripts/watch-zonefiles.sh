@@ -2,7 +2,7 @@
 zonefiles_dir=/var/lib/knot/zones/
 inotifywait --monitor --recursive --event modify $zonefiles_dir |
   while read path _ zone; do
-    if knotc zone-check $zone $zonefiles_dir$zone; then
+    if knotc zone-check $zone; then
       echo "Reloading zone $zone" > /dev/stdout
       knotc zone-reload $zone
     else
